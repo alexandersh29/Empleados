@@ -1,0 +1,94 @@
+{% extends "contenido/encabezado.html" %}
+{%block titulo %}Regristo de Cursos{% endblock %}
+{% block imagen%}
+{%load static%}
+{%static 'contenido/images/home.png'%}
+{%endblock%}
+{% block titul%}
+<div class="user-info">
+	Registro
+</div>
+{% endblock%}
+{% block contenido%}
+<!--Encabezdo -->
+<div class="page-title">
+	<div class="col-sm-10">
+		<h3>Registro de Empleados
+			<br>
+			<small>Plataforma para subir empleados</small>
+		</h3>
+	</div>
+</div>
+<!-- /Encabezado-->
+{%block bred%}
+<!--Barra de Navegación-->
+<div class="col-sm-10">
+	<div class="breadcrumb-line">
+		<ul class="breadcrumb">
+			<li>
+				<a href="{%url 'Principal'%}">
+					{%if request.path == '/' %}
+					Principal
+					{%else%}
+					Principal{{request.path}}
+					{%endif%}
+				</a>
+			</li>
+
+		</ul>
+	</div>
+</div>
+<!--/Barra de Navegación-->
+{%endblock%}
+<!-- Formulario -->
+<div class="col-sm-10">
+	<form class="form-horizontal" action="{% url 'Registrar'%}" method="POST" role="form" enctype="multipart/form-data">
+		{%csrf_token%}
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="form-group">
+					<label class="col-sm-2 control-label text-right">Nombres:</label>
+					<div class="col-sm-10">
+						<input name="nombre" type="text" class="form-control">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label text-right">Apellidos:</label>
+					<div class="col-sm-10">
+						<input name="apellido" type="text" class="form-control">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label text-right">Area:</label>
+					<div class="col-sm-10">
+						<input name="area" type="text" class="form-control">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label text-right">Cargo: </label>
+					<div class="col-sm-10">
+						<input name="cargo" type="text" class="form-control">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label text-right">Informacion Adicional:</label>
+					<div class="col-sm-10">
+						<textarea name="adicional" class="form-control" name="" id="" cols="30" rows="10"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label text-right">Fotografía:</label>
+					<div class="col-sm-10">
+						<input type="file" name="imagen" />
+					</div>
+				</div>
+				<div class="form-actions text-right">
+					<input type="submit" value="Enviar" class="btn btn-primary">
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+<!-- Fin del Formulario -->
+{%endblock%}

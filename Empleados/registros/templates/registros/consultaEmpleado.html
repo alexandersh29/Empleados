@@ -1,0 +1,78 @@
+{% extends "contenido/encabezado.html" %}
+{%block titulo %}Consultar los empleados{% endblock %}
+{% block imagen%}
+{%load static%}
+{%static 'contenido/images/home.png'%}
+{%endblock%}
+{% block titul%}
+<div class="user-info">
+    Empleados
+</div>
+{% endblock%}
+{% block contenido%}
+<!--Encabezdo -->
+<div class="page-title">
+    <div class="col-sm-10">
+        <h3>Lista de empleados
+            <br>
+            <small>Administra los empleados</small>
+        </h3>
+    </div>
+</div>
+<!-- /Encabezado-->
+{%block bred%}
+<!--Barra de Navegación-->
+<div class="col-sm-10">
+    <div class="breadcrumb-line">
+        <ul class="breadcrumb">
+            <li>
+                <a href="{%url 'Principal'%}">
+                    {%if request.path == '/' %}
+                    Principal
+                    {%else%}
+                    Principal{{request.path}}
+                    {%endif%}
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--/Barra de Navegación-->
+{%endblock%}
+<!--Tabla de cursos-->
+<div class="col-sm-10">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Foto</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Area</th>
+                <th>Cargo</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for empleado in empleados %}
+            <tr>
+                <td class="text-center">
+                    <img src="{{empleado.imagen.url}}" alt="" class="img-rounded" width="80" height="80">
+                </td>
+                <td class="text-semibold">{{empleado.nombre}}</td>
+                <td class="muted">{{empleado.apellido}}</td>
+                <td class="muted">{{empleado.area}}</td>
+                <td class="muted">{{empleado.cargo}}</td>
+                <td class="text-center">
+                    <a href="{%url 'ConsultaIndividual' empleado.id%}">Editar</a>
+                </td>
+                <td class="text-center">
+                    <a href="{%url 'Eliminar' empleado.id%}">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<!--/Tabla de cursos-->
+{%endblock%}
